@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"
+      integrity="sha256-bd8XIKzrtyJ1O5Sh3Xp3GiuMIzWC42ZekvrMMD4GxRg="
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      body {
+        background: rgba(34, 80, 34, 0.56);
+      }
+      .card {
+        position: relative;
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease-in-out;
+      }
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      /* Scale up the box */
+      .card:hover {
+        transform: scale(1.1, 1.1);
+      }
+
+      /* Fade in the pseudo-element with the bigger shadow */
+      .card:hover::after {
+        opacity: 1;
+      }
+
+      h2,
+      p {
+        color: #4e4e80;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="container my-4">
+      <h2 class="text-center my-4">Latest Exchange for {{base}} on {{date}}</h2>
+      <div class="card-columns">
+        <div class="card bg-success" v-for="(country,value) in exchangeRates">
+          <div class="card-body text-center">
+            <p class="card-text">Country:{{value}}</p>
+            <p class="card-text">Rate:{{country}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
